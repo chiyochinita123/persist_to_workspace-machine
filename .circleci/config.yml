@@ -22,3 +22,11 @@ jobs:
       - run: ruby -v
       - run: ls -la
       - run: arch
+
+workflows:
+  btd:
+    jobs:
+      - build
+      - downstream:
+          requires:
+            - build
