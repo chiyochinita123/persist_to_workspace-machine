@@ -8,9 +8,10 @@ jobs:
       - checkout
       - run: echo "Hello"
       - run: docker pull ruby:3.1.1
+      - run: 
       - persist_to_workspace:
           root: .
-          paths: ./
+          paths: ./*
   downstream:        
     machine:
       image: ubuntu-2004:current
