@@ -7,5 +7,18 @@ jobs:
     steps:
       - checkout
       - run: echo "Hello"
-      - run: docker pull cimg/ruby:3.1.1
+      - run: docker pull ruby:3.1.1
+      - persist_to_workspace:
+          root: .
+          paths: ./
+  downstream:        
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: arch
       - run: ls -la
+      - run: docker run -it ruby:3.1.1 bin/bash
+      - run: ruby -v
+      - run: ls -la
+      - run: arch
